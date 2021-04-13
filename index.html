@@ -10,10 +10,66 @@
         <title>Object Oriented Quiz Application</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        
-        <script src="app.js" async defer></script>
+        <div class="app">
+            <div class="container">
+                <div class="jabquiz">
+                    <div class="jabquiz__question-box">
+                        <h1 class="jabquiz__question">
+                            Who is the first president of the us
+                        </h1>
+                        <p class="javquiz__track">1 of 7</p>
+                        <div class="progress">
+                            <div class="progress__inner"></div>
+                        </div>
+                        <p class="jabquiz__tagline">pick an option below</p>
+                    </div>
+                    <div class="jabquiz__choices-box">
+                        <ul class="jabquiz__choices">
+                            <!--dynamically w/ js-->
+                            <li class="jabquiz__choice">
+                                <input type="radio" name="choice" class="jabquiz__input" id="choice0">
+                                <label for="choice0" class="jabquiz__label">
+                                    <i></i>
+                                    Martin Luther King
+                                </label>
+                            </li>
+
+                            <li class="jabquiz__choice">
+                                <input type="radio" name="choice" class="jabquiz__input" id="choice1">
+                                <label for="choice1" class="jabquiz__label">
+                                    <i></i>
+                                    steve Martin
+                                </label>
+                            </li>
+
+                            <li class="jabquiz__choice">
+                                <input type="radio" name="choice" class="jabquiz__input" id="choice2">
+                                <label for="choice2" class="jabquiz__label">
+                                    <i></i>
+                                    bob dylan
+                                </label>
+                            </li>
+
+                            <li class="jabquiz__choice">
+                                <input type="radio" name="choice" class="jabquiz__input" id="choice3">
+                                <label for="choice3" class="jabquiz__label">
+                                    <i></i>
+                                    Steve jobs
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="jabquiz__footer">
+                        <button class="button button--bordered next">next</button>
+                        <button class="button button--bordered restart">restart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="javascript/app.js" async defer></script>
     </body>
 </html>
