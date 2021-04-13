@@ -37,6 +37,7 @@
     opacity:0.9;
     font-weight: bold;
     transition: 0.3s all ease;
+
 }
 
 .button:hover {
@@ -49,6 +50,13 @@
 .button.button--bordered {
     border:1px solid var(--light-black);
 }
+
+.next,
+.restart {
+    margin: 0.5rem 0;
+    border-radius: 4px;
+}
+
 
 .jabquiz {
     padding:2rem 1.4rem;
@@ -127,7 +135,7 @@
 }
 
 .jabquiz__choices input:checked + label {
-    color:var(--main-theme-color);
+    /* color:var(--main-theme-color); */
 }
 
 .jabquiz__choices input:checked + label i {
