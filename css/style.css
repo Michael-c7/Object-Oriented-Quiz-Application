@@ -136,6 +136,7 @@
 
 .jabquiz__choices input:checked + label {
     /* color:var(--main-theme-color); */
+    font-weight: bold;
 }
 
 .jabquiz__choices input:checked + label i {
