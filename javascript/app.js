@@ -43,9 +43,32 @@ const App = (() => {
     const quiz = new Quiz([q1, q2, q3, q4, q5]);
 
 
+    const listeners = _ => {
+        nextButtonEl.addEventListener("click", function() {
+            const selectedRadioElm = document.querySelector('input[name="choice"]:checked');
+            const key = selectedRadioElm.getAttribute("data-order");
+            quiz.guess(key);
+            renderAll()
+        })
+
+        restartButtonEl.addEventListener("click", function() {
+            // 1. reset quiz
+            quiz.reset()
+            
+            // 2. renderAll again
+            renderAll()
+            // 3. restore next btn
+            nextButtonEl.style.opacity = 1;
+        })
+    }
+
+
+
     const setTextValue = (elem, value) => {
         elem.innerHTML = value;
     }
+
+   
 
     const renderQuestion = _ => {
         const question = quiz.getCurrentQuestion().question;
@@ -56,11 +79,10 @@ const App = (() => {
     const renderChoiceElements = _ => {
         let markup = "";
         const currentChoices = quiz.getCurrentQuestion().choices;
-        // console.log(currentChoices)
         currentChoices.forEach((elem, index) => {
             markup += `
             <li class="jabquiz__choice">
-                <input type="radio" name="choice" class="jabquiz__input" id="choice${index}">
+                <input type="radio" name="choice" class="jabquiz__input" data-order="${index}" id="choice${index}">
                 <label for="choice${index}" class="jabquiz__label">
                 <i></i>
                 <span>${elem}</span>
@@ -73,7 +95,7 @@ const App = (() => {
 
     const renderTracker = _ => {
         const index = quiz.currentIndex;
-        setTextValue(trackerEl, `${index + 1} of ${quiz.questions.length}`)
+        setTextValue(trackerEl, `${index + 1} of ${quiz.questions.length}`);
 
     }
 
@@ -102,11 +124,18 @@ const App = (() => {
     }
 
 
-
+    const renderEndScreen = _ => {
+        setTextValue(quizQuestionEl, "The quiz is done.")
+        setTextValue(taglineEl, "go home now.")
+        setTextValue(trackerEl, `Your score: ${getPercentage(quiz.score, quiz.questions.length)} units`)
+        nextButtonEl.style.opacity = 0;
+        renderProgress()
+    }
 
     const renderAll = _ => {
         if(quiz.hasEnded()) {
             // renderEndScreen
+            renderEndScreen()
         } else {
            // 1. render the question
            renderQuestion();
@@ -120,10 +149,12 @@ const App = (() => {
     }
 
     return {
-        renderAll : renderAll
+        renderAll : renderAll,
+        listeners : listeners
     }
 
 
 })();
 
-App.renderAll()
+App.renderAll();
+App.listeners();
